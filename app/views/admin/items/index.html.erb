@@ -1,0 +1,28 @@
+<h4>商品一覧</h4>
+<%= button_to "+", {controller: 'admin/items', action: 'new'}, {method: :get} %>
+
+<tble>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @items.each do |item| %>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
+      <td><%= item.genre %></td>
+      <td><%= item.is_active %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</tble>
+
+<%= paginate @items %>
+
