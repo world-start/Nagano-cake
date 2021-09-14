@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     # resources :homes, only:[:about]
     resources :items, only:[:show, :index]
     resources :registrations, only:[:new, :create]
-    resources :sessions, only:[:new, :create, :destroy]
+    # resources :sessions, only:[:new, :create, :destroy]
     resources :customers, only:[:show, :edit, :update, :confirm, :renew]
     resources :cart_items, only:[:index, :update, :remove, :destroy_all, :create]
     resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
