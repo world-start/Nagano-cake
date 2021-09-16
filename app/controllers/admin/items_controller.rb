@@ -5,7 +5,9 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
-    
+    item = Item.new(item_params)
+    item.save
+    redirect_to admin_item_path(current_customer.id)
   end
   
   def show
@@ -15,7 +17,7 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.page(params[:page]).reverse_order
   end
-
+  
   def edit
   end
 
