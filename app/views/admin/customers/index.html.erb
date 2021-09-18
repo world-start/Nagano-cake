@@ -1,0 +1,26 @@
+<h4>会員一覧</h4>
+
+<tble>
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @customers.each do |customer| %>
+      <td><%= customer.id %></td>
+        <% @orders.each do |order| %>
+          <td><%= order.name %></td>
+        <% end %>
+      <td><%= customer.email %></td>
+      <td><%= customer.is_active %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</tble>
+
+<%= paginate @customers %>

@@ -1,0 +1,31 @@
+<h4>注文履歴詳細</h4>
+
+  <div class="order">
+    <span>購入者</span>
+    <%= @order.id %>
+  </div>
+  
+  <div class="order">
+    <span>注文日</span>
+    <%= @customer.l %>
+  </div>
+  
+  <div class="customer">
+    <span>配送先</span>
+    <%= @customer.last_name_kana %>
+    <%= @customer.first_name_kana %>
+  </div>
+  
+  <div class="customer">
+    <span>支払方法</span>
+    <%= @customer.postal_code %>
+  </div>
+  
+  <div class="customer">
+    <span>注文ステータス</span>
+    <%= @customer.address %>
+  </div>
+  
+  
+  
+  
