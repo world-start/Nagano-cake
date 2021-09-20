@@ -1,7 +1,6 @@
 class Admin::CustomersController < ApplicationController
   def index
     @customers = Customer.page(params[:page]).reverse_order
-    @orders = Order.page(params[:page]).reverse_order
   end
   
   def show
@@ -9,9 +8,17 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
+    @customer =Customer.find(params[:id])
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    @customer.update(customer_params)
+  if @customer.save
+    redirect_to admin_customer_path(@customer)
+  else
+    render edit_admin_customer_path(@customer)
+  end
   end
 
   private

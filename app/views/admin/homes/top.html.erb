@@ -1,4 +1,5 @@
 <h4>注文履歴一覧</h4>
+<!--書き直す？-->
 
 <table>
   <thead>
@@ -15,9 +16,7 @@
       <% @orders.each do |order| %>
         <td><%= order.created_at %></td>
         <td><%= order.name %></td>
-        <%= @order_items.each do |order_item| %>
-          <td><%= order_item.amount%></td>
-        <% end %>
+        <td><%= order.order_item.amount%></td>
         <td><%= order.order_status %></td>
       <% end %>
     </tr>

@@ -3,8 +3,7 @@ class Admin::GenresController < ApplicationController
   
   def create
      @genre = Genre.new(genre_params)
-     @genre.save
-  if @item.save
+  if @genre.save
     redirect_to admin_genres_path 
   else
     render admin_genres_path
@@ -13,7 +12,7 @@ class Admin::GenresController < ApplicationController
   
   def index
     @genres = Genre.all
-  #   genre = Genre.new(genre_params)
+    @genre = Genre.new
   #   genre.save
   #   redirect_to admin_genres_path 
   end
@@ -24,6 +23,7 @@ class Admin::GenresController < ApplicationController
   
   def update
     @genre = Genre.find(params[:id])
+    #binding.pry
     @genre.update(genre_params)
   if @genre.save
     redirect_to admin_genres_path
@@ -32,10 +32,10 @@ class Admin::GenresController < ApplicationController
   end
   end
   
-  # .require(:genre)を消す
+  # "genre"=>{"name"=>"ビスケット"} genreの中のnameに格納されたビスケットを取り出す。
   private
   def genre_params
-    params.permit(:name)
+    params.require(:genre).permit(:name)
   end
   
 end
