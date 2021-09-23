@@ -40,8 +40,14 @@ Rails.application.routes.draw do
     resources :registrations, only:[:new, :create]
     # resources :sessions, only:[:new, :create, :destroy]
     resources :customers, only:[:show, :edit, :update, :confirm, :renew]
-    resources :cart_items, only:[:index, :update, :remove, :destroy_all, :create]
-    resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
+    resources :cart_items, only:[:index, :update, :destroy, :create] do
+      collection do
+        delete "destroy_all",to: "cart_items#destroy_all"
+      end
+    end
+    resources :orders, only:[:new, :create, :index, :show]
+    get "/orders/confirm", to: "orders#confirm"
+    get "/orders/thanks", to: "orders#thanks"
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
   
