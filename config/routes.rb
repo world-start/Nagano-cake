@@ -35,19 +35,23 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to => 'homes#top'
     get "/homes/about" =>"homes#about"
-    # resources :homes, only:[:about]
     resources :items, only:[:show, :index]
     resources :registrations, only:[:new, :create]
-    # resources :sessions, only:[:new, :create, :destroy]
-    resources :customers, only:[:show, :edit, :update, :confirm, :renew]
+    
+    get "customer", to: "customers#show"
+    get "/customer/edit" => "customers#edit"
+    patch "/customer/update" => "customers#update"
+    get "/customer/confirm" => "customers#confirm"
+    patch "/customer/renew" => "customes#renew"
+  
     resources :cart_items, only:[:index, :update, :destroy, :create] do
       collection do
         delete "destroy_all",to: "cart_items#destroy_all"
       end
     end
-    resources :orders, only:[:new, :create, :index, :show]
-    get "/orders/confirm", to: "orders#confirm"
+    post "/orders/confirm", to: "orders#confirm"
     get "/orders/thanks", to: "orders#thanks"
+    resources :orders, only:[:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
   

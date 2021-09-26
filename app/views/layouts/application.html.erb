@@ -19,6 +19,11 @@
           <div class="navbar-brand">
             <%= link_to "LOGO", root_path, class: "link-logo" %>
           </div>
+          
+          <% if customer_signed_in? %>
+            ようこそ、<%= current_customer.last_name %>さん！
+          <% end %>
+          
   
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,7 +38,7 @@
               <li class="nav-item active"><%= link_to "ジャンル一覧", admin_genres_path, class: "link" %></li>
               <li class="nav-item active"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "link" %></li>
             <% elsif customer_signed_in? %>
-              <li class="nav-item active"><%= link_to 'マイページ', customer_path(current_customer.id), class: "link" %></li>
+              <li class="nav-item active"><%= link_to 'マイページ', customer_path(current_customer), class: "link" %></li>
               <li class="nav-item active"><%= link_to "商品一覧", items_path, class: "link"  %></li>
               <li class="nav-item active"><%= link_to "カート", cart_items_path, class: "link"  %></li>
               <li class="nav-item active"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "link" %></li>
