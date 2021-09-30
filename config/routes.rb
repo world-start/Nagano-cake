@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get "/customer/edit" => "customers#edit"
     patch "/customer/update" => "customers#update"
     get "/customer/confirm" => "customers#confirm"
-    patch "/customer/renew" => "customes#renew"
+    patch "/customer/renew" => "customers#renew"
   
     resources :cart_items, only:[:index, :update, :destroy, :create] do
       collection do

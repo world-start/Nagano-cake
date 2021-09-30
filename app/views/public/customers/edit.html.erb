@@ -1,7 +1,7 @@
 <h4>会員情報編集</h4>
  
 <div class="customer-form">
-<%= form_with model:@customer, url: customer_edit_path, local:true do |f| %>
+<%= form_with model:@customer, url: customer_update_path(@customer), local:true do |f| %>
   
   <div class="field">
     <%= f.label :氏名 %>

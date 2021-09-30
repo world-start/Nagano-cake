@@ -55,7 +55,7 @@
         <%= button_to "編集する", {controller: 'customers', action: 'edit'}, {method: :get, class: 'btn btn-success'} %>
       </div>
       <div class="index-botton">
-        <%= button_to "注文履歴一覧を見る", {controller: 'homes', action: 'top'}, {metod: :get, class: 'btn btn-primary'} %>
+        <%= link_to "注文履歴一覧を見る", edit_admin_order_path(@customer), class: 'btn btn-primary' %>
       </div>
     </div>
 　</div>

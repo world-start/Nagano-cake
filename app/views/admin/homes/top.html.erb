@@ -1,5 +1,4 @@
 <h4>注文履歴一覧</h4>
-<!--書き直す？-->
 
 <table>
   <thead>
@@ -11,14 +10,26 @@
     </tr>
   </thead>
   <tbody>
+    <% @orders.each do |order| %>
     <tr>
-      <!--belongs_toでモデルをつなぐ-->
-      <% @orders.each do |order| %>
         <td><%= order.created_at %></td>
         <td><%= order.name %></td>
-        <td><%= order.order_item.amount%></td>
-        <td><%= order.order_status %></td>
-      <% end %>
+        <td><%= order_item.amount%></td>
+        <td> 
+        <% if order.order_status == "wait" %>
+        <p>入金待ち</p>
+        <% elsif order.order_status == "confirmed" %>
+        <p>確認</p>
+        <% elsif order.order_status == "making" %>
+        <p>制作中</p>
+        <% elsif order.order_status == "preparation" %>
+        <p>準備中</p>
+        <% elsif order.order_status == "sent" %>
+        <p>発送済み</p>
+        <% end %>
+        </td>
     </tr>
+    <% end %>
   </tbody>
 </table>
+<%= paginate @orders %>

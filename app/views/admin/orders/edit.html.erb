@@ -8,23 +8,39 @@
   
   <div class="order">
     <span>注文日</span>
-    <%= @customer.l %>
+    <%= @order.created_at %>
   </div>
   
   <div class="customer">
     <span>配送先</span>
-    <%= @customer.last_name_kana %>
-    <%= @customer.first_name_kana %>
+  〒<%= @order.postal_code %>
+    <%= @order.address %>
+    <%= @order.name %>
   </div>
   
   <div class="customer">
     <span>支払方法</span>
-    <%= @customer.postal_code %>
+      <% if @order.payment_method == "credit_card" %>
+       <p>クレジットカード</p>
+       <% elsif @order.payment_method == "transfer" %>
+       <p>銀行振込</p>
+       <% end %>
   </div>
   
   <div class="customer">
     <span>注文ステータス</span>
-    <%= @customer.address %>
+    
+    <% if @order.order_status == "wait" %>
+        <p>入金待ち</p>
+        <% elsif order.order_status == "confirmed" %>
+        <p>確認</p>
+        <% elsif order.order_status == "making" %>
+        <p>制作中</p>
+        <% elsif order.order_status == "preparation" %>
+        <p>準備中</p>
+        <% elsif order.order_status == "sent" %>
+        <p>発送済み</p>
+        <% end %>
   </div>
   
   <%= link_to '更新', class: 'btn btn-success' %>
