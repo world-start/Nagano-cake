@@ -12,9 +12,18 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-        <td><%= order.created_at %></td>
+        <td>
+          <%= link_to(edit_admin_order_path(order)) do %>
+          <%= order.created_at %>
+          <% end %>
+        </td>
         <td><%= order.name %></td>
-        <td><%= order_item.amount%></td>
+        <td>
+          <!--ex.ショートケーキ2+チーズケーキ1＝計3注文-->
+        <% @sum = 0 %>
+        <% order.order_items.each do |f| %>
+        <% @sum += f.amount%>
+        <% end %><%= @sum %></td>
         <td> 
         <% if order.order_status == "wait" %>
         <p>入金待ち</p>

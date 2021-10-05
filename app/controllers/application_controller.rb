@@ -13,8 +13,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def after_sign_out_path_for(resource)
-    root_path
+  def after_sign_out_path_for(resource_or_scope)
+    # case resource
+    if resource_or_scope == :admin
+    # when Admin #Adminモデル
+      new_admin_session_path #遷移先のパス
+    # when Customer
+    else
+      root_path              
+    end
   end
 
 

@@ -19,11 +19,6 @@ class Public::CartItemsController < ApplicationController
       @cart_item.save
       redirect_to cart_items_path
     end
-    
-    #   if
-    # else 
-    #   render 'items/show'
-    # end
   end
   
   def update

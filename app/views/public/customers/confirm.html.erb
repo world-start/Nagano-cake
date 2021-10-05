@@ -9,4 +9,5 @@
 <%= form_with model: @customer, url: customer_renew_path(@customer), local:true do |f| %>
   <%= link_to '退会しない', customer_path, class: 'btn btn-primary' %>
   <%= f.submit '退会する', class: 'btn btn-danger' %>
+  <%#= link_to '退会する', customer_renew_path,method:patch, class: 'btn btn-primary' %>
 <% end %>

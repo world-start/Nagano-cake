@@ -2,6 +2,9 @@ class Public::OrdersController < ApplicationController
   
   def new
    @order = Order.new
+   if current_customer.cart_items.count == 0
+     redirect_to cart_items_path
+   end
   # @order.addresses.build
   end
   
@@ -66,6 +69,8 @@ class Public::OrdersController < ApplicationController
   end
   
   def show
+    @order = Order.find(params[:id])
+    
   end
   
   private

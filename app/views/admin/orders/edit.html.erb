@@ -1,9 +1,10 @@
 <h4>注文履歴詳細</h4>
-<!--書き直す！-->
 
   <div class="order">
     <span>購入者</span>
+    <%= link_to(admin_customer_path(@order.customer_id)) do %>
     <%= @order.name %>
+    <% end %>
   </div>
   
   <div class="order">
@@ -30,20 +31,11 @@
   <div class="customer">
     <span>注文ステータス</span>
     
-    <% if @order.order_status == "wait" %>
-        <p>入金待ち</p>
-        <% elsif order.order_status == "confirmed" %>
-        <p>確認</p>
-        <% elsif order.order_status == "making" %>
-        <p>制作中</p>
-        <% elsif order.order_status == "preparation" %>
-        <p>準備中</p>
-        <% elsif order.order_status == "sent" %>
-        <p>発送済み</p>
-        <% end %>
+      <%= form_with model: @order, url:admin_order_path(@order), local:true do |f| %>
+        <%= f.select :order_status, [['入金待ち',:wait], ['確認',:confirmed], ['制作中',:making], ['準備中',:preparation], ['発送済み',:sent]] %>
+        <%= f.submit '更新', class: 'btn btn-primary' %>
+      <% end %>
   </div>
-  
-  <%= link_to '更新', class: 'btn btn-success' %>
   
   <table>
   <thead>
@@ -57,21 +49,32 @@
     </tr>
   </thead>
   <tbody>
+    <% @order_items.each do |order_item| %>
     <tr>
+      <td><%= order_item.item.name %></td>
+      <td><%= (order_item.item.price*1.1).to_i %></td>
+      <td><%= order_item.amount %></td>
+      <td><%= order_item.subtotal %></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= link_to '更新', class: 'btn btn-success' %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
-
 <table>
   <thead>
-    <tr><th>商品合計</th><td></td></tr>
-    <tr><th>送料</th><td></td></tr>
-    <tr><th>請求金額合計</th><td></td></tr>
+    <tr>
+      <th>商品合計</th>
+      <th>送料</th>
+      <th>請求金額合計</th>
+    </tr>
+    
+    
+    <tr>
+      <td><%= @total %></td>
+      <td>800円</td>
+      <td><%= @total+800 %></td>
+    </tr>
+   
   </thead>
 </table>
   
